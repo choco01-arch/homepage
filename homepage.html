@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Mubarak Hub & Game</title>
+    <style>
+        :root {
+            --primary-purple: #4A154B;
+            --secondary-purple: #6B2D5C;
+            --accent-yellow: #FFD700;
+            --gradient-yellow: linear-gradient(90deg, #FFD700, #FFA500);
+            --dark-bg: #1A051D;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            background-image: radial-gradient(circle at top right, var(--secondary-purple), transparent);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(74, 21, 75, 0.95);
+            border-bottom: 3px solid var(--accent-yellow);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-yellow);
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 5%;
+        }
+
+        /* Card Master Style */
+        .card-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        /* Login Section */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #E0D0E0;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--secondary-purple);
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-yellow);
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 12px;
+            background: var(--gradient-yellow);
+            border: none;
+            border-radius: 8px;
+            color: var(--primary-purple);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Stress Test (Psychological Quiz) */
+        .quiz-option {
+            background: rgba(107, 45, 92, 0.4);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: left;
+        }
+
+        .quiz-option:hover {
+            background: var(--secondary-purple);
+            border-color: var(--accent-yellow);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* Games Section (Dashboard) */
+        .dashboard-container {
+            width: 100%;
+            max-width: 1000px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .welcome-msg {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome-msg h2 {
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, var(--secondary-purple), var(--primary-purple));
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 4px solid var(--accent-yellow);
+            transition: 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+        }
+
+        .game-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .game-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.85rem;
+            color: #E0D0E0;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🌙 Al-Mubarak Hub</div>
+    </header>
+
+    <div class="container">
+        
+        <div id="login-box" class="card-box">
+            <h3>Masuk Akun Santri</h3>
+            <div class="input-group">
+                <label for="username">Nama Lengkap / NIS</label>
+                <input type="text" id="username" placeholder="Masukkan nama kamu...">
+            </div>
+            <div class="input-group">
+                <label for="kamor">Kamar / Gedung</label>
+                <input type="text" id="kamor" placeholder="Contoh: Cordoba 03">
+            </div>
+            <button class="btn-custom" onclick="handleLogin()">Masuk</button>
+        </div>
+
+        <div id="quiz-box" class="card-box" style="display: none;">
+            <h3 id="quiz-title">Santri Stress Assessment</h3>
+            <div id="quiz-content">
+                </div>
+        </div>
+
+        <div id="dashboard-box" class="dashboard-container">
+            <div class="welcome-msg">
+                <h2 id="user-greeting">Marhaban, Santri!</h2>
+                <p id="stress-result-status">Hasil analisis tokomu menunjukkan tingkat stres: Aman</p>
+            </div>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="alert('Memulai game Islamic Journey...')">
+                    <div class="game-icon">🌍</div>
+                    <h4>Islamic Journey</h4>
+                    <p>Jelajahi peta peradaban Islam dunia sambil menjawab berbagai tantangan seru.</p>
+                </div>
+                <div class="game-card" onclick="alert('Memulai game Jejak Cahaya...')">
+                    <div class="game-icon">✨</div>
+                    <h4>Jejak Cahaya</h4>
+                    <p>Ikuti jalur penuh teka-teki moral akhlakul karimah untuk mengumpulkan cahaya kebaikan.</p>
+                </div>
+                <div class="game-card" onclick="alert('Memulai game Arabic Solitaire...')">
+                    <div class="game-icon">🃏</div>
+                    <h4>Arabic Solitaire</h4>
+                    <p>Asah otak dengan menyusun kartu huruf hijaiyah dan kosakata bahasa Arab.</p>
+                </div>
+                <div class="game-card" onclick="alert('Memulai game Islamic Word Finder...')">
+                    <div class="game-icon">🔍</div>
+                    <h4>Islamic Word Finder</h4>
+                    <p>Temukan kata-kata tersembunyi bertema nama nabi, malaikat, dan istilah fikih.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentUsername = "";
+        let currentQuestionIndex = 0;
+        let totalStressScore = 0;
+
+        // Data Kuesioner Stres Khusus Anak Pondok
+        const quizQuestions = [
+            {
+                question: "Bagaimana kondisi tidurmu di pondok akhir-akhir ini?",
+                options: [
+                    { text: "Nyenyak, bisa istirahat dengan cukup", score: 1 },
+                    { text: "Sering terbangun / kurang tidur karena antre atau tugas", score: 3 },
+                    { text: "Sangat sulit tidur dan merasa selalu lelah", score: 5 }
+                ]
+            },
+            {
+                question: "Seberapa sering kamu merasa rindu rumah (homesick) hingga mengganggu hafalan?",
+                options: [
+                    { text: "Jarang, sudah betah dan punya banyak teman", score: 1 },
+                    { text: "Kadang-kadang, terutama saat selesai dijenguk", score: 3 },
+                    { text: "Sering sekali, rasanya ingin pulang terus", score: 5 }
+                ]
+            },
+            {
+                question: "Bagaimana perasaanmu menghadapi target setoran hafalan / ujian kitab?",
+                options: [
+                    { text: "Tenang, dijalani saja semampunya dengan istiqomah", score: 1 },
+                    { text: "Sedikit cemas dan tegang kalau belum mutqin", score: 3 },
+                    { text: "Sangat panik, takut, dan merasa tertekan oleh target", score: 5 }
+                ]
+            }
+        ];
+
+        // 1. Fungsi Login
+        function handleLogin() {
+            const usernameInput = document.getElementById('username').value.trim();
+            if (!usernameInput) {
+                alert("Silakan isi nama kamu terlebih dahulu!");
+                return;
+            }
+            currentUsername = usernameInput;
+            
+            // Sembunyikan login, tampilkan stress test
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('quiz-box').style.display = 'block';
+            
+            showQuestion();
+        }
+
+        // 2. Fungsi Menampilkan Pertanyaan Stress Test
+        function showQuestion() {
+            const quizContent = document.getElementById('quiz-content');
+            const currentQ = quizQuestions[currentQuestionIndex];
+            
+            let optionsHtml = "";
+            currentQ.options.forEach(opt => {
+                optionsHtml += `<button class="quiz-option" onclick="submitAnswer(${opt.score})">${opt.text}</button>`;
+            });
+
+            quizContent.innerHTML = `
+                <p class="question-text"><strong>Pertanyaan ${currentQuestionIndex + 1}/${quizQuestions.length}:</strong><br>${currentQ.question}</p>
+                <div style="display: flex; flex-direction: column;">
+                    ${optionsHtml}
+                </div>
+            `;
+        }
+
+        // 3. Fungsi Menyimpan Jawaban & Cek Progress
+        function submitAnswer(score) {
+            totalStressScore += score;
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < quizQuestions.length) {
+                showQuestion();
+            } else {
+                finishStressTest();
+            }
+        }
+
+        // 4. Selesai Tes & Buka Akses Game
+        function finishStressTest() {
+            document.getElementById('quiz-box').style.display = 'none';
+            document.getElementById('dashboard-box').style.display = 'block';
+
+            // Penentuan Status Stres berdasarkan skor total
+            let statusStres = "";
+            let saran = "";
+            
+            if (totalStressScore <= 5) {
+                statusStres = "Rendah (Tenang/Stabil) 😊";
+                saran = "Kondisimu sangat baik untuk belajar!";
+            } else if (totalStressScore <= 10) {
+                statusStres = "Sedang (Wajar) 😐";
+                saran = "Jangan lupa istirahat di sela-sela setoran hafalan, ya.";
+            } else {
+                statusStres = "Tinggi (Butuh Refreshing) ☕";
+                saran = "Rileks sejenak. Game di bawah ini siap membantumu santai!";
+            }
+
+            // Update UI Dashboard
+            document.getElementById('user-greeting').innerText = `Marhaban, ${currentUsername}!`;
+            document.getElementById('stress-result-status').innerHTML = `
+                Tingkat Stres Kamu: <strong>${statusStres}</strong>.<br>
+                <small style="color: #FFD700;">${saran}</small>
+            `;
+        }
+    </script>
+
+</body>
+</html>
